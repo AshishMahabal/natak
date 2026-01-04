@@ -111,12 +111,15 @@ def bucket_cast(males: Optional[int], females: Optional[int]) -> str:
 
 
 def safe_text(x: Any) -> str:
+    """Return a trimmed string; treat common null-ish sentinels as empty."""
     if x is None:
         return ""
-    s = str(x)
-    if s.lower().strip() == "nan":
+    s = str(x).strip()
+    if not s:
         return ""
-    return s.strip()
+    if s.lower() in {"nan", "none", "null"}:
+        return ""
+    return s
 
 
 @dataclass
@@ -245,6 +248,13 @@ def facet_index(title: str, items: List[Tuple[str, str]], base: str) -> str:
 
 def play_detail(play: Play, base: str) -> str:
     r = play.row
+    mins_num = to_int(r.get("Length (in minutes)"))
+    if mins_num == 0:
+        mins_display = "?"
+    elif mins_num is None:
+        mins_display = "Unknown"
+    else:
+        mins_display = str(mins_num)
     fields = [
         ("ID", safe_text(r.get("ID"))),
         ("Author (English)", safe_text(r.get("Author_English"))),
@@ -254,7 +264,7 @@ def play_detail(play: Play, base: str) -> str:
         ("Genre", play.genre_value),
         ("Acts", play.acts_value),
         ("Pages", safe_text(r.get("Pages"))),
-        ("Length (in minutes)", safe_text(r.get("Length (in minutes)"))),
+        ("Length (in minutes)", mins_display),
         ("Length (descriptor)", safe_text(r.get("Length"))),
         ("Males", safe_text(r.get("Males"))),
         ("Females", safe_text(r.get("Females"))),
@@ -331,7 +341,14 @@ def main(csv_path: str, out_dir: str) -> None:
             pid = safe_text(row.get("ID"))
             slug = f"{base_slug}-{slugify(pid)}" if pid else base_slug
 
-            acts = safe_text(row.get("Acts")) or "Unknown"
+            acts_raw = safe_text(row.get("Acts"))
+            acts_num = to_int(acts_raw) if acts_raw else None
+            if acts_num == 0:
+                acts = "?"
+            elif acts_raw:
+                acts = acts_raw
+            else:
+                acts = "Unknown"
             genre = safe_text(row.get("Genre")) or "Unknown"
             availability = safe_text(row.get("Availability")) or "Unknown"
 
@@ -350,7 +367,7 @@ def main(csv_path: str, out_dir: str) -> None:
                     pages_bucket=bucket_pages(pages),
                     duration_bucket=bucket_minutes(mins),
                     cast_bucket=bucket_cast(males, females),
-                    acts_value=acts if acts else "Unknown",
+                    acts_value=acts,
                     genre_value=genre if genre else "Unknown",
                     availability_value=availability if availability else "Unknown",
                 )
