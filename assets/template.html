@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="{{BASE}}assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a href="{{BASE}}index.html" class="brand-link">Plays</a>
+        <span class="brand-sub">a browsable catalog</span>
+      </div>
+      <nav class="nav">
+        {{NAV}}
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">{{H1}}</h1>
+    {{BODY}}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>Generated {{GENERATED_AT}} • Static site (no JS)</span>
+    </div>
+  </footer>
+</body>
+</html>

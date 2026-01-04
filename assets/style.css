@@ -1,0 +1,47 @@
+/* Minimal, readable styling (similar spirit to a simple writings site) */
+:root{
+  --fg:#111;
+  --muted:#666;
+  --bg:#fff;
+  --border:#e6e6e6;
+  --link:#0b57d0;
+  --chip-bg:#f6f6f6;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.45;}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.site-header{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0}
+.site-header .container{display:flex;align-items:center;gap:20px;padding:14px 16px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand-link{font-weight:700;font-size:18px}
+.brand-sub{color:var(--muted);font-size:13px}
+
+.nav{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.nav a{padding:6px 10px;border-radius:8px}
+.nav a.active{background:var(--chip-bg);border:1px solid var(--border)}
+
+.page-title{margin:18px 0 10px;font-size:26px}
+.meta{color:var(--muted);margin:0 0 18px}
+
+.table{width:100%;border-collapse:collapse;margin:10px 0 18px}
+.table th,.table td{padding:10px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.table th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);text-align:left;white-space:nowrap}
+.table td{font-size:14px}
+.small{font-size:13px;color:var(--muted)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:12px 0 20px}
+.card{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
+.card-title{font-weight:650;margin:0 0 6px}
+.card-kv{margin:0;color:var(--muted);font-size:13px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{display:inline-block;padding:4px 8px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--border);font-size:12px;color:var(--fg)}
+
+.kv{display:grid;grid-template-columns:220px 1fr;gap:8px 14px;margin:10px 0 18px}
+.k{color:var(--muted);font-size:13px}
+.v{font-size:14px}
+
+.site-footer{border-top:1px solid var(--border);margin-top:30px;padding:18px 0;color:var(--muted);font-size:13px}
