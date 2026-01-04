@@ -2,6 +2,7 @@ plays_site_nojs.zip
 docs
 natak
 old
+pages.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

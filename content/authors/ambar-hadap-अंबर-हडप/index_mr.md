@@ -1,0 +1,33 @@
+---
+title: Ambar Hadap / अंबर हडप
+h1: Ambar Hadap / अंबर हडप
+base: ../../
+active: authors
+nav: |
+  <nav class="nav">
+  <a class="nav-item" href="../../index.html">Plays</a>
+  <a class="nav-item" href="../../selected/index.html">Selected</a>
+  <a class="nav-item active" href="../../authors/index.html">Authors</a>
+  <a class="nav-item" href="../../genres/index.html">Genres</a>
+  <a class="nav-item" href="../../acts/index.html">Acts</a>
+  <a class="nav-item" href="../../availability/index.html">Availability</a>
+  </nav>
+generated_at: "2026-01-03 23:45"
+---
+
+<!-- AUTO:BEGIN -->
+<p class="small">Sort: <a href="index.html">English/Roman</a> | <a href="index_mr.html">Marathi/Devanagari</a></p><div class="cards">
+<div class="card">
+  <p class="card-title"><a href="../../plays/ambar-hadap-arja-motha-nami/index.html">Arja Motha Nami / अर्ज मोठा नामी</a></p>
+  <p class="card-kv">Ambar Hadap / अंबर हडप</p>
+  
+  <div class="chips"><span class="chip">Ambar Hadap / अंबर हडप</span><span class="chip">? act(s)</span><span class="chip">? min</span></div>
+</div>
+<div class="card">
+  <p class="card-title"><a href="../../plays/ambar-hadap-vashya-baba-ani-sasu/index.html">Vashya Baba Ani Sasu / वश्या बाब्या आणि सासू</a></p>
+  <p class="card-kv">Ambar Hadap / अंबर हडप</p>
+  
+  <div class="chips"><span class="chip">Ambar Hadap / अंबर हडप</span><span class="chip">? act(s)</span><span class="chip">? min</span></div>
+</div>
+</div>
+<!-- AUTO:END -->
