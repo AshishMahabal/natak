@@ -3,7 +3,7 @@
 Static site generator for Plays20260103.csv
 
 - No JS. Navigation and filtering via facet/tag pages.
-- Output goes to docs/ (GitHub Pages-friendly).
+- Output goes to natak/ (GitHub Pages-friendly).
 """
 from __future__ import annotations
 
