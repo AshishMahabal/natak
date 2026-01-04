@@ -1,4 +1,4 @@
-name: Build and Deploy Natak site
+name: Build and Deploy Natak
 
 on:
   push:
@@ -26,10 +26,15 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
       - name: Build site
         run: |
           chmod +x build.sh
-          ./build.sh
+          ./build.sh Plays20260103.csv
           test -f natak/index.html
 
       - name: Upload Pages artifact
@@ -45,4 +50,3 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
