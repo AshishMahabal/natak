@@ -4,6 +4,12 @@ natak
 old
 pages.yml
 
+# Private, never-public tracking of who holds/can share which script.
+# Keyed by play ID against Plays*.csv. Never commit this file's contents.
+script_contacts.csv
+form_config.json
+group_path.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
