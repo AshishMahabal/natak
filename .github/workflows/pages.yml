@@ -34,8 +34,22 @@ jobs:
       - name: Build site
         run: |
           chmod +x build.sh
-          ./build.sh Plays20260103.csv
+          ./build.sh Plays20260907.csv
           test -f natak/index.html
+
+      # Group-only copy at an unlisted path, with a per-play edit form.
+      # Both values are repo secrets so the public repo doesn't reveal them.
+      - name: Build group site
+        env:
+          GROUP_PATH: ${{ secrets.GROUP_PATH }}
+          FORM_CONFIG: ${{ secrets.FORM_CONFIG }}
+        run: |
+          if [ -n "$GROUP_PATH" ] && [ -n "$FORM_CONFIG" ]; then
+            python3 generator.py Plays20260907.csv "natak/$GROUP_PATH" "$FORM_CONFIG"
+            test -f "natak/$GROUP_PATH/index.html"
+          else
+            echo "GROUP_PATH / FORM_CONFIG not set; skipping group site"
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
