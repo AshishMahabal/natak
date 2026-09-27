@@ -1,0 +1,41 @@
+name: Member submissions to PRs
+
+# Weekly, on demand, and whenever main changes (e.g. a member PR was merged),
+# so the remaining open member PRs are rebuilt on top of the new main.
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays 14:00 UTC
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths: ["Plays*.csv", "contributors.txt"]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: member-prs
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install google-auth requests
+
+      - name: Open / refresh member PRs
+        env:
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          GOOGLE_SA_KEY: ${{ secrets.GOOGLE_SA_KEY }}
+          CSV_PATH: Plays20260907.csv   # keep in sync with pages.yml
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/member_prs.py
